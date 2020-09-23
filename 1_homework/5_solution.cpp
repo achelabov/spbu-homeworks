@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <math.h>
 int count(int n)
 {
 	int c = 0;
