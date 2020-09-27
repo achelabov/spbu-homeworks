@@ -24,7 +24,7 @@ void output(int* arr, int count)
 
 void addElements(int* &arr, int &count, int &capacity)
 {
-	int n, a, b, rnd;
+	int n, a, b;
 	std::cin >> n >> a >> b;
 
 	for (int i = 0; i < n; ++i)
