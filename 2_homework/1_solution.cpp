@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 void expandArray(int* &arr, int &capacity)
 {
 	int newCapacity = capacity + 1;
@@ -45,24 +44,25 @@ int minElement(int* arr, int count)
 	return min;
 }
 
-int maxElement(int* arr, int count)
+int maxElementIndex(int* arr, int count)
 {
 	int max = arr[0];
+	int maxIndex = 0;
 	for (int i = 1; i < count; ++i)
 	{
 		if(arr[i] > max)
 		{
 			max = arr[i];
+			maxIndex = i;
 		}
 	}
-	return max;
+	return maxIndex;
 }
 
-void addElement(int* &arr, int &count, int &capacity)
+void addElement(int* &arr, int &count, int &capacity, int element)
 {
 	expandArray(arr, capacity);
-	std::cout << "Введите значение " << count << " элемента массива" << std::endl; 
-	std::cin >> arr[count];
+	arr[count] = element;
 	count++;
 }
 
@@ -73,7 +73,6 @@ void printArray(int* arr, int count)
 		std::cout << arr[i] << " ";
 	}
 }
-
 
 void menu()
 {
@@ -97,7 +96,9 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 1:
 		{
-			addElement(arr, count, capacity);
+			int element;
+			std::cin >> element;
+			addElement(arr, count, capacity, element);
 			break;
 		}
 		case 2:
@@ -107,7 +108,7 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 3:
 		{
-			std::cout << "Max = " <<  maxElement(arr, count) << std::endl;
+			std::cout << "Max Index = " <<  maxElementIndex(arr, count) << std::endl;
 			break;
 		}
 		case 4:

@@ -22,19 +22,14 @@ void output(int* arr, int count)
 	}
 }
 
-void addElements(int* &arr, int &count, int &capacity)
+void addElements(int* &arr, int &count, int &capacity, int n, int a, int b)
 {
-	int n, a, b, rnd;
-	std::cin >> n >> a >> b;
-
 	for (int i = 0; i < n; ++i)
 	{
 		expandArray(arr, capacity);
 		arr[count] = a + rand() % (b - a);
 		count++;
 	}
-
-	output(arr, count);
 }
 
 void reverseArray(int* &arr, int count)
@@ -45,32 +40,16 @@ void reverseArray(int* &arr, int count)
        		arr[i] = arr[count-i-1];
         	arr[count-i-1] = tmp;
     	}
-
-	output(arr, count);
 }
 
 void swapElements(int* &arr, int count)
 {
-	if (count % 2 == 0)
+	for (int i = 1; i < count; i += 2)
 	{
-		for (int i = 0; i < count; i += 2)
-		{
-			int tmp = arr[i];
-			arr[i] = arr[i+1];
-			arr[i+1] = tmp;	
-		}
+		int tmp = arr[i];
+		arr[i] = arr[i-1];
+		arr[i-1] = tmp;	
 	}
-       	else
-	{
-		for (int i = 0; i < count - 2; i += 2)
-		{
-			int tmp = arr[i];
-			arr[i] = arr[i+1];
-			arr[i+1] = tmp;	
-		}
-	}
-
-	output(arr, count);
 }
 
 void shiftArray(int* &arr, int count)
@@ -83,14 +62,10 @@ void shiftArray(int* &arr, int count)
 	}
 
 	arr[0] = tmp;
-	output(arr, count);
 }
 
-void twoHalfsArray(int* &arr, int count)
+void twoHalfsArray(int* &arr, int count, int n)
 {
-	int n; 
-	std::cin >> n;
-
 	for (int i = 0; i < n / 2; ++i)
 	{
 		int tmp = arr[i];
@@ -104,8 +79,6 @@ void twoHalfsArray(int* &arr, int count)
 		arr[n+i+1] = arr[count-i-1];
 		arr[count-i-1] = tmp;
 	}
-
-	output(arr, count);
 }
 
 void menu()
@@ -129,27 +102,36 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 1:
 		{
-			addElements(arr, count, capacity);
+			int n, a, b;
+			std::cin >> n >> a >> b;
+			addElements(arr, count, capacity, n, a, b);
+			output(arr, count);
 			break;
 		}
 		case 2:
 		{
 			reverseArray(arr, count);
+			output(arr, count);
 			break;
 		}
 		case 3:
 		{
 			swapElements(arr, count);
+			output(arr, count);
 			break;
 		}
 		case 4:
 		{
 			shiftArray(arr,count);
+			output(arr, count);
 			break;
 		}
 		case 5:
 		{
-			twoHalfsArray(arr, count);
+			int n; 
+			std::cin >> n;
+			twoHalfsArray(arr, count, n);
+			output(arr, count);
 			break;
 		} 
 	}
