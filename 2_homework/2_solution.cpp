@@ -24,12 +24,6 @@ void output(int* arr, int count)
 
 void addElements(int* &arr, int &count, int &capacity, int n, int a, int b)
 {
-<<<<<<< HEAD
-=======
-	int n, a, b;
-	std::cin >> n >> a >> b;
-
->>>>>>> cff8254e61b647e5d61d40273e1a2692282a53da
 	for (int i = 0; i < n; ++i)
 	{
 		expandArray(arr, capacity);
