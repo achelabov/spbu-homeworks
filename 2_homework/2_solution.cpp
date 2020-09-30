@@ -22,7 +22,7 @@ void output(int* arr, int count)
 	}
 }
 
-void addElements(int* &arr, int &count, int capacity, int n, int a, int b)
+void addElements(int* &arr, int &count, int &capacity, int n, int a, int b)
 {
 	for (int i = 0; i < n; ++i)
 	{
