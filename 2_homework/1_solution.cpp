@@ -2,7 +2,7 @@
 
 void expandArray(int* &arr, int &capacity)
 {
-	int newCapacity = capacity + 1;
+	int newCapacity = capacity * 2;
 	int* temp = new int[newCapacity];
 	for (int j = 0; j < capacity; ++j)
 	{
@@ -17,7 +17,7 @@ void printReverseArray(int* arr, int count)
 {
 	for (int i = count-1; i >= 0; --i)
 	{
-		std::cout << arr[i] << " ";
+		std::cout << arr[i] << "\n";
 	}	
 }
 
@@ -46,22 +46,24 @@ int minElement(int* arr, int count)
 
 int maxElementIndex(int* arr, int count)
 {
-	int max = arr[0];
 	int maxIndex = 0;
 	for (int i = 1; i < count; ++i)
 	{
-		if(arr[i] > max)
+		if(arr[i] > arr[maxIndex])
 		{
-			max = arr[i];
 			maxIndex = i;
 		}
 	}
 	return maxIndex;
 }
 
-void addElement(int* &arr, int &count, int &capacity, int element)
+void addElement(int* &arr, int &count, int capacity, int element)
 {
-	expandArray(arr, capacity);
+	if (count == capacity)
+	{
+		expandArray(arr, capacity); 
+	}
+
 	arr[count] = element;
 	count++;
 }
@@ -70,19 +72,19 @@ void printArray(int* arr, int count)
 {
 	for (int i = 0; i < count; ++i)
 	{
-		std::cout << arr[i] << " ";
+		std::cout << arr[i] << "\n";
 	}
 }
 
 void menu()
 {
-		std::cout << "\n0 - Выход из программы" << std::endl;
-		std::cout << "1 - Добавить число в массив" << std::endl;
-		std::cout << "2 - Вывести массив на экран" << std::endl;
-		std::cout << "3 - Найти номер максимального элемента массива" << std::endl;
-		std::cout << "4 - Найти минимальный элемент массива" << std::endl;
-		std::cout << "5 - Посчитать сумму элементов массива" << std::endl;
-		std::cout << "6 - Вывести массив в обратном порядке\n" << std::endl;
+	std::cout << "\n0 - Выход из программы" << std::endl;
+	std::cout << "1 - Добавить число в массив" << std::endl;
+	std::cout << "2 - Вывести массив на экран" << std::endl;
+	std::cout << "3 - Найти номер максимального элемента массива" << std::endl;
+	std::cout << "4 - Найти минимальный элемент массива" << std::endl;
+	std::cout << "5 - Посчитать сумму элементов массива" << std::endl;
+	std::cout << "6 - Вывести массив в обратном порядке\n" << std::endl;
 }
 
 void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
@@ -96,7 +98,7 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 1:
 		{
-			int element;
+			int element = 0;
 			std::cin >> element;
 			addElement(arr, count, capacity, element);
 			break;

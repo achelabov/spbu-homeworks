@@ -3,7 +3,7 @@
 
 void expandArray(int* &arr, int &capacity)
 {
-	int newCapacity = capacity + 1;
+	int newCapacity = capacity * 2;
 	int* temp = new int[newCapacity];
 	for (int j = 0; j < capacity; ++j)
 	{
@@ -18,77 +18,81 @@ void output(int* arr, int count)
 {
 	for (int i = 0; i < count; ++i)
 	{
-		std::cout << arr[i] << " ";
+		std::cout << arr[i] << "\n";
 	}
 }
 
-void addElements(int* &arr, int &count, int &capacity, int n, int a, int b)
+void addElements(int* &arr, int &count, int capacity, int n, int a, int b)
 {
 	for (int i = 0; i < n; ++i)
 	{
-		expandArray(arr, capacity);
+		if (count == capacity)
+		{
+			expandArray(arr, capacity);
+		}
+
 		arr[count] = a + rand() % (b - a);
 		count++;
 	}
 }
 
-void reverseArray(int* &arr, int count)
+void reverseArray(int* arr, int count)
 {
 	for (int i = 0; i < count / 2; i++)
     	{
         	int tmp = arr[i];
-       		arr[i] = arr[count-i-1];
-        	arr[count-i-1] = tmp;
+       		arr[i] = arr[count - i - 1];
+        	arr[count - i - 1] = tmp;
     	}
 }
 
-void swapElements(int* &arr, int count)
+void swapElements(int* arr, int count)
 {
 	for (int i = 1; i < count; i += 2)
 	{
 		int tmp = arr[i];
-		arr[i] = arr[i-1];
-		arr[i-1] = tmp;	
+		arr[i] = arr[i - 1];
+		arr[i - 1] = tmp;	
 	}
 }
 
-void shiftArray(int* &arr, int count)
+void shiftArray(int* arr, int count)
 {
-	int tmp = arr[count-1];
+	int tmp = arr[count - 1];
 	
 	for (int i = count - 1; i > 0; --i)
 	{
-		arr[i] = arr[i-1];
+		arr[i] = arr[i - 1];
 	}
 
 	arr[0] = tmp;
 }
 
-void twoHalfsArray(int* &arr, int count, int n)
+void twoHalfsArray(int* arr, int count, int n)
 {
 	for (int i = 0; i < n / 2; ++i)
 	{
 		int tmp = arr[i];
-		arr[i] = arr[n-i-1];
-		arr[n-i-1] = tmp;
+		arr[i] = arr[n - i - 1];
+		arr[n - i - 1] = tmp;
 	}
 
 	for (int i = 0; i < (count - n - 1) / 2; ++i)
 	{
-		int tmp = arr[n+i+1];
-		arr[n+i+1] = arr[count-i-1];
-		arr[count-i-1] = tmp;
+		int tmp = arr[n + i + 1];
+		arr[n + i + 1] = arr[count - i - 1];
+		arr[count - i - 1] = tmp;
 	}
 }
 
 void menu()
 {
-		std::cout << "\n0 - Выход из программы" << std::endl;
-		std::cout << "1 - Добавить в массив n случайных чисел в промежутке от a до b (n, a, b вводится с клавиатуры)" << std::endl;
-		std::cout << "2 - Развернуть массив" << std::endl;
-		std::cout << "3 - Поменять элементы массива местами в парах" << std::endl;
-		std::cout << "4 - Циклический сдвиг вправо на 1" << std::endl;
-		std::cout << "5 - Развернуть две половинки массива. n - индекс элемента, разделяющего половинки" << std::endl;
+	std::cout << "\n0 - Выход из программы" << std::endl;
+	std::cout << "1 - Добавить в массив n случайных чисел в промежутке от a до b (n, a, b вводится с клавиатуры)" << std::endl;
+	std::cout << "2 - Развернуть массив" << std::endl;
+	std::cout << "3 - Поменять элементы массива местами в парах" << std::endl;
+	std::cout << "4 - Циклический сдвиг вправо на 1" << std::endl;
+	std::cout << "5 - Развернуть две половинки массива. n - индекс элемента, разделяющего половинки" << std::endl;
 }
 
 void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
@@ -102,7 +106,9 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 1:
 		{
-			int n, a, b;
+			int n = 0;
+			int a = 0;
+			int b = 0;
 			std::cin >> n >> a >> b;
 			addElements(arr, count, capacity, n, a, b);
 			output(arr, count);
@@ -128,7 +134,7 @@ void processInput(int* &arr, int &capacity, int &count, bool &isTrue, int num)
 		}
 		case 5:
 		{
-			int n; 
+			int n = 0; 
 			std::cin >> n;
 			twoHalfsArray(arr, count, n);
 			output(arr, count);
