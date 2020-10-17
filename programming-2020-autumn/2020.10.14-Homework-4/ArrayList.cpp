@@ -1,4 +1,5 @@
 #include "ArrayList.h"
+#include "cassert"
 
 ArrayList::ArrayList()
 {
@@ -26,7 +27,7 @@ void expand(int*& data, int& capacity)
 
 bool isCorrect(int index, int count)
 {
-	return index < count && index >= 0 ? true : false;
+	return index < count && index >= 0;
 }
 
 void ArrayList::add(int element)
@@ -41,6 +42,7 @@ void ArrayList::add(int element)
 
 bool ArrayList::add(int index, int element)
 {
+	assert(isCorrect(index, count));
 	int indexElement = data[index];
 	if (count == capacity)
 	{
@@ -52,7 +54,7 @@ bool ArrayList::add(int index, int element)
 	}
 	data[indexElement] = element;
 	++count;
-	return isCorrect(index, count); 
+	return true; 
 }
 
 bool ArrayList::addAll(ArrayList& list)
@@ -65,11 +67,12 @@ bool ArrayList::addAll(ArrayList& list)
 		}
 		data[count + i] = list.data[i];
 	}
-	return list.count != 0 ? true : false;
+	return list.count != 0;
 }
 
 bool ArrayList::addAll(int index, ArrayList& list)
 {
+	assert(isCorrect(index, count));
 	while (capacity < count + list.count)
 	{
 		expand(data, capacity);
@@ -82,41 +85,7 @@ bool ArrayList::addAll(int index, ArrayList& list)
 	{
 		data[index + i] = list.data[i];
 	}
-	return isCorrect(index, count);
-}
-
-void ArrayList::addElements(int number)
-{
-	ArrayList list;
-	for (int i = 0; i < number; ++i)
-	{
-		if (list.count == list.capacity)
-		{
-			expand(list.data, list.capacity);
-		}
-		int element = 0;
-		std::cin >> element;
-		list.data[i] = element;
-		++list.count;
-	}
-	addAll(list);
-}
-
-void ArrayList::addElements(int number, int index)
-{
-	ArrayList list;
-	for (int i = 0; i < number; ++i)
-	{
-		if (list.count == list.capacity)
-		{
-			expand(list.data, list.capacity);
-		}
-		int element = 0;
-		std::cin >> element;
-		list.data[i] = element;
-		++list.count;
-	}
-	addAll(index, list);
+	return true;
 }
 
 bool ArrayList::contains(int element)
@@ -161,17 +130,18 @@ int ArrayList::indexOf(int element)
 
 bool ArrayList::isEmpty()
 {
-	return count == 0 ? true : false;
+	return count == 0;
 }
 
 bool ArrayList::remove(int index)
 {
+	assert(isCorrect(index, count));
 	for (int i = index; i < count; ++i)
 	{
 		data[i] = data[i + 1];
 	}
 	--count;
-	return isCorrect(index, count);
+	return true;
 }
 
 bool ArrayList::swap(int index1, int index2)
@@ -179,7 +149,7 @@ bool ArrayList::swap(int index1, int index2)
 	int tmp = data[index1];
 	data[index1] = data[index2];
 	data[index2] = tmp;
-	return index1 < count && index2 < count && index1 >= 0 && index2 >= 0 ? true : false;
+	return index1 < count && index2 < count && index1 >= 0 && index2 >= 0;
 }
 
 void ArrayList::print()
