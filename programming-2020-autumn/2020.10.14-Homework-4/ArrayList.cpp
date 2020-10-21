@@ -1,5 +1,4 @@
 #include "ArrayList.h"
-#include "cassert"
 
 ArrayList::ArrayList()
 {
@@ -42,7 +41,10 @@ void ArrayList::add(int element)
 
 bool ArrayList::add(int index, int element)
 {
-	assert(isCorrect(index, count));
+	if (isCorrect(index, count) == false)
+	{
+		return false;
+	}
 	int indexElement = data[index];
 	if (count == capacity)
 	{
@@ -59,29 +61,33 @@ bool ArrayList::add(int index, int element)
 
 bool ArrayList::addAll(ArrayList& list)
 {
+	while (capacity < count + list.count)
+	{
+		expand(data, capacity);
+	}
 	for (int i = 0; i < list.count; ++i)
 	{
-		if (count == capacity)
-		{
-			expand(data, capacity);
-		}
-		data[count + i] = list.data[i];
+		add(list.get(i));
 	}
 	return list.count != 0;
 }
 
 bool ArrayList::addAll(int index, ArrayList& list)
 {
-	assert(isCorrect(index, count));
+	if (isCorrect(index, count) == false)
+	{
+		return false;
+	}
 	while (capacity < count + list.count)
 	{
 		expand(data, capacity);
 	}
-	for (int i = count + list.count; i > index; --i)
+	for (int i = count - 1; i >= index; --i)
 	{
-		data[i] = data[i - 1];
+		data[i + list.count] = data[i];
 	}
-	for (int i = 0; i < count + list.count - index; ++i)
+	count += list.count;
+	for (int i = 0; i < list.count; ++i)
 	{
 		data[index + i] = list.data[i];
 	}
@@ -135,7 +141,10 @@ bool ArrayList::isEmpty()
 
 bool ArrayList::remove(int index)
 {
-	assert(isCorrect(index, count));
+	if (isCorrect(index, count) == false)
+	{
+		return false;
+	}
 	for (int i = index; i < count; ++i)
 	{
 		data[i] = data[i + 1];

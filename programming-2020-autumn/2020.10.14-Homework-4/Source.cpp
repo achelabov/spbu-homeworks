@@ -62,18 +62,21 @@ void processChoice(ArrayList& arr, int choice)
 		}
 		case 6:
 		{
+			ArrayList list;
 			int number = 0;
 			std::cin >> number;
 			for (int i = 0; i < number; ++i)
 			{
 				int element = 0;
 				std::cin >> element;
-				arr.add(element);
+				list.add(element);
 			}
+			arr.addAll(list);
 			break;
 		}
 		case 7:
 		{
+			ArrayList list;
 			int number = 0;
 			int index = 0;
 			std::cin >> number >> index;
@@ -81,9 +84,9 @@ void processChoice(ArrayList& arr, int choice)
 			{
 				int element = 0;
 				std::cin >> element;
-				arr.add(index, element);
-				++index;
+				list.add(element);
 			}
+			arr.addAll(index, list);
 			break;
 		}
 	}
