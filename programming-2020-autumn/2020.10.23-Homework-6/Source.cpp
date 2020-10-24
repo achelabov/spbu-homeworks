@@ -93,13 +93,14 @@ void processChoice(ArrayList& arr, int choice)
 					int mem = arr.get(i);
 					arr.remove(i);
 					bool isTrue = true;
-					for (int i = 0; i < (arr.length() - 1) / 2; ++i)
+					for (int j = 0; j < (arr.length() - 1) / 2; ++j)
 					{
-						if (arr.get(i) != arr.get(arr.length() - 1 - i))
+						if (arr.get(j) != arr.get(arr.length() - 1 - j))
 						{
 							isTrue = false;
 							break;
 						}
+
 					}
 					arr.add(i, mem);
 					if (isTrue)
