@@ -132,7 +132,6 @@ bool ArrayList::add(int index, int element)
 	{
 		return false;
 	}
-	int indexElement = data[index];
 	if (count == capacity)
 	{
 		expand();
@@ -142,7 +141,7 @@ bool ArrayList::add(int index, int element)
 	{
 		data[i] = data[i - 1];			
 	}
-	data[indexElement] = element;
+	data[index] = element;
 	++count;
 	return true; 
 								

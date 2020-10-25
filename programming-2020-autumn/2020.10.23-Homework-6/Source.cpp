@@ -37,7 +37,7 @@ void processChoice(ArrayList& arr, int choice)
 		case 3:
 			{
 				bool isTrue = true;
-				for (int i = 0; i < (arr.length() - 1) / 2; ++i)
+				for (int i = 0; i < arr.length() / 2; ++i)
 				{
 					if (arr.get(i) != arr.get(arr.length() - 1 - i))
 					{
@@ -93,7 +93,7 @@ void processChoice(ArrayList& arr, int choice)
 					int mem = arr.get(i);
 					arr.remove(i);
 					bool isTrue = true;
-					for (int j = 0; j < (arr.length() - 1) / 2; ++j)
+					for (int j = 0; j < arr.length() / 2; ++j)
 					{
 						if (arr.get(j) != arr.get(arr.length() - 1 - j))
 						{
