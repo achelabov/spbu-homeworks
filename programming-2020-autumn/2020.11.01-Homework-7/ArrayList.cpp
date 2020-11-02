@@ -52,7 +52,6 @@ bool ArrayList::add(int index, int element)
 	if (count == capacity)
 	{
 		expand();
-						
 	}
 	for (int i = count; i > index; --i)
 	{
@@ -68,12 +67,10 @@ bool ArrayList::addAll(ArrayList& list)
 	while (capacity < count + list.count)
 	{
 		expand();
-
 	}
 	for (int i = 0; i < list.count; ++i)
 	{
 		add(list.get(i));
-
 	}
 	return list.count != 0;
 }
@@ -97,7 +94,8 @@ bool ArrayList::addAll(int index, ArrayList& list)
 	{
 		data[index + i] = list.data[i];
 
-	}	return true;
+	}	
+	return true;
 }
 
 bool ArrayList::contains(int element)
