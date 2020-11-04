@@ -10,7 +10,7 @@ void printMenu()
 	cout << "1 - Вывод списка в поток" << endl;
 	cout << "2, 3 - Добавление элемента в конец списка" << endl;
 	cout << "4 - Добавление элемента в начало списка" << endl;
-	cout << "5 - Удаление последнего вхождения элемента" << endl;
+	cout << "5, 9 - Удаление последнего вхождения элемента" << endl;
 	cout << "6 - Присвоение" << endl;
 	cout << "7 - Сложение списков" << endl;
 	cout << "8 - Удаление первого элемента из списка" << endl;
@@ -74,6 +74,13 @@ void processChoice(ArrayList& arr, int choice)
 				int element = 0;
 				cin >> element;
 				arr = element - arr;
+				break;
+			}
+		case 9:
+			{
+				int element = 0;
+				cin >> element;
+				arr = arr - element;
 				break;
 			}
 	}

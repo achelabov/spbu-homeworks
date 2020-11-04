@@ -257,6 +257,20 @@ ArrayList operator-(int item, const ArrayList& list)
 	{
 		result.data[i] = list.data[i];
 	}
+	result.remove(0);
+	return result;
+}
+
+ArrayList operator-(const ArrayList& list, int item)
+{
+	ArrayList result;
+	result.count = list.count;
+	result.capacity = list.capacity;
+	result.data = new int[list.capacity] { 0 };
+	for (int i = 0; i < list.count; ++i)
+	{
+		result.data[i] = list.data[i];
+	}
 	result.remove(result.indexOf(item));
 	return result;
 }
