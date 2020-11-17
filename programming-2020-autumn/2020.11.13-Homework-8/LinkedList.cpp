@@ -265,13 +265,12 @@ LinkedList& LinkedList::operator=(LinkedList list)
 {
 	for (int i = 0; i < count; ++i)
 	{
-		extractTail();
+		extractHead();
 	}
 	Node* temp = list.head;
-	for (int i = 0; i < list.length(); ++i)
+	for (Node* temp = list.head; temp != nullptr; temp = temp->next)
 	{
-		addToTail(list.get(i));
-		temp = temp->next;
+		addToTail(temp->data);
 	}
 	return *this;
 }
