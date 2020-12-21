@@ -49,5 +49,6 @@ int main()
 	{
 		delete[] a[i];
 	}
+	delete[] a;
 	return EXIT_SUCCESS;
 }
