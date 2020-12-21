@@ -5,7 +5,11 @@ int main()
 	int n = 0;
 	int k = 1;
 	std::cin >> n;
-	int a[n][n];
+	int** a = new int* [n];
+	for (int i = 0; i < n; ++i)
+	{
+		a[i] = new int[n + 1];
+	}
 	if(n % 2 != 0)
 	{
 	       	a[n / 2][n / 2] = n * n;
@@ -40,6 +44,10 @@ int main()
 			std::cout << a[i][j] << " ";
 		}
 		std::cout << a[i][n - 1] << std::endl;
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		delete[] a[i];
 	}
 	return EXIT_SUCCESS;
 }
