@@ -7,7 +7,6 @@ char* printBits(void* data, size_t size)
 	char* dest = new char[1 + 8 * size];
 	char* ptr = dest;
 	uint8_t* b = (uint8_t*)(data) + size - 1;
-  
 
 	for (size_t bit = 8 * size; bit--; ptr++)
 	{
