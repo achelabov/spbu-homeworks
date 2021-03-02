@@ -33,43 +33,30 @@ T1 mod(T1 a, T2 b)
 	return fmod(a, b);
 }
 
-template<class T1, class T2>
-void calc(T1 a,T2 b, T1 (*op)(T1, T2))
-{
-	std::cout << op(a, b) << std::endl;
-}
-
-template<class T1, class T2>
-void resolveOpNumber(T1 operand1, T2 operand2, char op)
+int operationIndex(char op)
 {
 	switch (op)
 	{
 		case '+':
-		{
-			calc(operand1, operand2, sum);
-			break;
-		}
+			return 0;
 		case '-':
-		{
-			calc(operand1, operand2, diff);
-			break;
-		}
+			return 1;
 		case '*':
-		{
-			calc(operand1, operand2, mult);
-			break;
-		}
+			return 2;
 		case '/':
-		{
-			calc(operand1, operand2, div);
-			break;
-		}
+			return 3;
 		case '%':
-		{
-			calc(operand1, operand2, mod);
-			break;
-		}
+			return 4;
+		default:
+			return -1;
 	}
+}
+
+template<class T1, class T2>
+T1 calc(T1 a,T2 b, char op)
+{
+	T1(*operations[5])(T1, T2) = { sum, diff, mult, div, mod};
+	return operations[operationIndex(op)](a, b);
 }
 
 void check(int argc, char** argv)
@@ -82,8 +69,8 @@ void check(int argc, char** argv)
 int main(int argc, char** argv)
 {
 	check(argc, argv);
-
-	resolveOpNumber(std::stod(argv[2]), std::stod(argv[4]), *argv[6]);
+	
+	std::cout << calc(std::stod(argv[2]), std::stod(argv[4]), *argv[6]);	
 	
 	return 0;
 }
