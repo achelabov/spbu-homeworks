@@ -14,13 +14,13 @@ bool isDigit(char c)
 
 bool isNatural(std::string str, int& index)
 {
-	if (isDigit(str[index]))
-	{
-		while (isDigit(str[++index]));
+    if (isDigit(str[index]))
+    {
+        while (isDigit(str[++index]));
 
-		return true;
-	}
-	return false;
+        return true;
+    }
+    return false;
 }
 
 bool isOrder(std::string str, int& index)
@@ -46,10 +46,10 @@ bool isMantissa(std::string str, int& index)
 
 bool isReal(std::string str, int& index)
 {
-    if (isMantissa(str, index) && isOrder(str, index) || isSign(str[index++]) && isMantissa(str, index) && isOrder(str, index)) 
+    if (isMantissa(str, index) && isOrder(str, index) || isSign(str[index++]) && isMantissa(str, index) && isOrder(str, index))
     {
-		return true;
-	}
+        return true;
+    }
 	return false;
 }
 
