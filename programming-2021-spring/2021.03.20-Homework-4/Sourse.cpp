@@ -34,13 +34,14 @@ void bubbleSort(int* arr, int length, int& comparisonBubble, int& permutationBub
 	for (int i = 0; i < length - 1; ++i)
 	{
 		for (int j = 0; j < length - i - 1; ++j)
-		{
+        {
             ++comparisonBubble;
 			if (arr[j] > arr[j + 1])
 			{
-				swap(arr[j], arr[j + 1]);
+			
+                swap(arr[j], arr[j + 1]);
                 ++permutationBubble;
-			}
+            }
 		}
 	}
 }
@@ -53,12 +54,12 @@ void insertionSort(int* a, int len, int& comparisonInsertion, int& permutationIn
 		int j = i;
 		while (j > 0 && a[j - 1] > t)
 		{
-			comparisonInsertion++;
+			++comparisonInsertion;
 			a[j] = a[j - 1];
 			--j;
 		}
 		a[j] = t;
-		permutationInsertion++;
+		++permutationInsertion;
 	}
 }
 
@@ -69,14 +70,14 @@ void selectionSort(int* a, int len, int& comparisonSelection, int& permutationSe
 		int index = i;
 		for (int j = i + 1; j < len; ++j)
 		{
+			++comparisonSelection;
 			if (a[j] < a[index])
 			{
 				index = j;
 			}
-			comparisonSelection++;
 		}
 		swap(a[i], a[index]);
-		permutationSelection++;
+		++permutationSelection;
 	}
 }
 
