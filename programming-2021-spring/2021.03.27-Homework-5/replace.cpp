@@ -2,8 +2,6 @@
 #include <fstream>
 #include <string>
 
-//Ничего не работает
-
 int main()
 {
     std::fstream fbin;
