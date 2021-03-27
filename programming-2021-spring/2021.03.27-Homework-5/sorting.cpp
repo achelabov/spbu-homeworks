@@ -122,6 +122,6 @@ int main()
     delete[] countingArray;
     delete[] quickArray;
     delete[] mergeArray;
-
+    
     return EXIT_SUCCESS;
 }
