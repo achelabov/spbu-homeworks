@@ -30,14 +30,24 @@ DNode* copy(DNode* x)
 DList::DList(const DList& l)
 {
     head = copy(l.head);
-    tail = last();
+    DNode* c_node = head;
+    while (c_node->next != nullptr)
+    {
+        c_node = c_node->next;
+    }
+    tail = c_node;
 }
 
 DList& DList::operator=(const DList& l)
 {
     del();
     head = copy(l.head);
-    tail = last();
+    DNode* c_node = head;
+    while (c_node->next != nullptr)
+    {
+        c_node = c_node->next;
+    }
+    tail = c_node;
 
     return *this;
 }
@@ -159,9 +169,22 @@ void DList::delp(int index)
 
 void DList::del()
 {
-    while (length())
+    if (length() == 0)
     {
-        del_first();
+        return;
+    }
+    else
+    {
+        DNode* c_node = head;
+        while (c_node != nullptr)
+        {
+            DNode* del_node = c_node;
+            c_node = c_node->next;
+            delete del_node;
+        }
+
+        head = c_node;
+        tail = nullptr;
     }
 }
 
