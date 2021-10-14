@@ -27,14 +27,7 @@ public:
             else 
                 ++it;
         }
-/*        for (auto& it : base)
-        {
-            if (it.get_number() == number)
-            {
-                base.erase(it);
-            }
-        }
-*/    }
+    }
 
     void print_data(unsigned long number)
     {
@@ -58,7 +51,7 @@ public:
 ostream& operator<< (ostream& out, DataBase& db)
 {
 //    out << db.base.begin()->get_name();
-   /* for (auto& it : db.base)
+    for (auto& it : db.base)
     {
         out << it.get_number() << '\t' << it.get_name() << '\t' 
             << it.get_address()["city"] 
@@ -66,14 +59,6 @@ ostream& operator<< (ostream& out, DataBase& db)
             << it.get_address()["house"] << '\t';
     }
     
-    for (auto it = db.base.begin(); it != db.base.end(); ++it)
-    {
-        out << it->get_number() << '\t' << it->get_name() << '\t' 
-            << it->get_address()["city"] 
-            << '\t' << it->get_address()["street"] << '\t' 
-            << it->get_address()["house"] << '\t';
-    }*/
-    cout << "hello" << endl;
     return out;
 }
 /*
