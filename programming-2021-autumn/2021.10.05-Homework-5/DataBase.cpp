@@ -50,4 +50,35 @@ public:
             }
         }
     }
+    
+    friend ostream& operator<< (ostream& out, DataBase& db);
+    friend istream& operator>> (istream& in, const DataBase& db);
 };
+
+ostream& operator<< (ostream& out, DataBase& db)
+{
+//    out << db.base.begin()->get_name();
+   /* for (auto& it : db.base)
+    {
+        out << it.get_number() << '\t' << it.get_name() << '\t' 
+            << it.get_address()["city"] 
+            << '\t' << it.get_address()["street"] << '\t' 
+            << it.get_address()["house"] << '\t';
+    }
+    
+    for (auto it = db.base.begin(); it != db.base.end(); ++it)
+    {
+        out << it->get_number() << '\t' << it->get_name() << '\t' 
+            << it->get_address()["city"] 
+            << '\t' << it->get_address()["street"] << '\t' 
+            << it->get_address()["house"] << '\t';
+    }*/
+    cout << "hello" << endl;
+    return out;
+}
+/*
+istream& operator>> (istream& in, const DataBase& db)
+{
+    in >>
+    return in;
+}*/

@@ -16,5 +16,7 @@ int main()
 
     base.print_data(1);
     base.print_data(3);
+
+//    cout << base;
     return 0;
 }
