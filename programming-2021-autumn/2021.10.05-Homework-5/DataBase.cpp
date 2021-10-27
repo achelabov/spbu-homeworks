@@ -1,52 +1,41 @@
-#include "Subscriber.h"
-#include <iostream>
-#include <list>
+#include "DataBase.h"
 
-class DataBase
+void DataBase::add_subscriber(unsigned long number, string name,
+       string city, string street, string house)
 {
-private:
-    list<Subscriber> base;
+    map<string, string> address = {{"city", city}, 
+                                   {"street", street}, 
+                                   {"house", house}};
+    Subscriber sub(number, name, address);
+    base.push_back(sub);
+}
 
-public:
-    void add_subscriber(unsigned long number, string name,
-           string city, string street, string house)
+void DataBase::delete_subscriber(unsigned long number)
+{
+    for (auto it = base.begin(); it != base.end();)
     {
-        map<string, string> address = {{"city", city}, 
-                                       {"street", street}, 
-                                       {"house", house}};
-        Subscriber sub(number, name, address);
-        base.push_back(sub);
+        if (it->get_number() == number)
+            it = base.erase(it);
+        else 
+            ++it;
     }
+}
 
-    void delete_subscriber(unsigned long number)
+void DataBase::print_data(unsigned long number)
+{
+    for (auto& it : base)
     {
-        for (auto it = base.begin(); it != base.end();)
+        if (it.get_number() == number)
         {
-            if (it->get_number() == number)
-                it = base.erase(it);
-            else 
-                ++it;
+            cout << "Name: " << it.get_name() << "\t";
+            cout << "City: " << it.get_address()["city"] << "\t";
+            cout << "Street: " << it.get_address()["street"] << "\t";
+            cout << "House: " << it.get_address()["house"] << "\t";
+            cout << endl;
         }
     }
-
-    void print_data(unsigned long number)
-    {
-        for (auto& it : base)
-        {
-            if (it.get_number() == number)
-            {
-                cout << "Name: " << it.get_name() << "\t";
-                cout << "City: " << it.get_address()["city"] << "\t";
-                cout << "Street: " << it.get_address()["street"] << "\t";
-                cout << "House: " << it.get_address()["house"] << "\t";
-                cout << endl;
-            }
-        }
-    }
+}
     
-    friend ostream& operator<< (ostream& out, DataBase& db);
-    friend istream& operator>> (istream& in, const DataBase& db);
-};
 
 ostream& operator<< (ostream& out, DataBase& db)
 {
@@ -64,6 +53,10 @@ ostream& operator<< (ostream& out, DataBase& db)
 /*
 istream& operator>> (istream& in, const DataBase& db)
 {
-    in >>
+    in >> it.get_number() >> it.get_name() 
+        >> it.get_address()["city"] 
+        >> it.get_address()["street"]
+        >> it.get_address()["house"];
+
     return in;
 }*/
