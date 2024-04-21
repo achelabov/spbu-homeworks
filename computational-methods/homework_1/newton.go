@@ -20,17 +20,16 @@ func newtonMethod(x0 float64, eps float64) (float64, int) {
 	var fx, dfx float64
 	var x float64 = x0
 	var m int = 0
-	var flag bool = true
 
 	// Implement Newton's method
-	for flag {
+	for {
 		fx = f(x)
 		dfx = df(x)
 		x = x - fx/dfx
 		m++
 
 		// Check if root is found
-		if math.Abs(fx) < eps {
+		if math.Abs(f(x)) > eps {
 			return x, m
 		}
 
@@ -46,8 +45,6 @@ func newtonMethod(x0 float64, eps float64) (float64, int) {
 			return 0, 0
 		}
 	}
-
-	return x, m
 }
 
 func main() {
@@ -67,6 +64,7 @@ func main() {
 
 	// Compute step size h
 	var h float64 = (b - a) / float64(N)
+	var counter int
 
 	// Iterate over all subintervals
 	for i := 0; i < N; i++ {
@@ -79,6 +77,7 @@ func main() {
 			// Apply Newton's method to find root
 			x0 := (ai + bi) / 2
 			x, m := newtonMethod(x0, eps)
+			counter++
 
 			// Output results
 			fmt.Printf("Root found in interval [%.6f, %.6f]:\n", ai, bi)
@@ -88,4 +87,6 @@ func main() {
 			fmt.Printf("Residual: %.10f\n\n", math.Abs(f(x)))
 		}
 	}
+
+	fmt.Println("Number of roots found: ", counter)
 }

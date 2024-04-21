@@ -92,9 +92,9 @@ func main() {
 		// print results
 		fmt.Println("Sorted table of function values:")
 		printTable(nodes)
-		fmt.Printf("Interpolation polynomial (Lagrange form): PnL(x) = %.26f\n", pl(x))
+		fmt.Printf("Interpolation polynomial (Lagrange form): PnL(x) = %.26f, f(x)=%.26f\n", pl(x), f(x))
 		fmt.Printf("Absolute actual error (Lagrange form): |f(x) - PnL(x)| = %.26f\n", errL)
-		fmt.Printf("Interpolation polynomial (Newton form): PnN(x) = %.26f\n", pn(x))
+		fmt.Printf("Interpolation polynomial (Newton form): PnN(x) = %.26f, f(x)=%.26f\n", pn(x), f(x))
 		fmt.Printf("Absolute actual error (Newton form): |f(x) - PnN(x)| = %.26f\n", errN)
 	}
 }
@@ -143,23 +143,6 @@ func lagrangePolynomial(nodes []point) func(x float64) float64 {
 		}
 		return sum
 	}
-}
-
-// calculates the divided differences for the given nodes
-func dividedDifferences(nodes []point) []float64 {
-	n := len(nodes) - 1
-	dd := make([]float64, n+1)
-	for i := 0; i <= n; i++ {
-		dd[i] = nodes[i].fx
-	}
-	for j := 1; j <= n; j++ {
-		for i := n; i >= j; i-- {
-			dd[i] = (dd[i] - dd[i-1]) / (nodes[i].x - nodes[i-j].x)
-		}
-	}
-
-	return dd
-
 }
 
 // calculates the Newton polynomial for the given nodes

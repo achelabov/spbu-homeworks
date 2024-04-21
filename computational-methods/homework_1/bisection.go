@@ -68,6 +68,7 @@ func main() {
 
 	// Compute step size h
 	var h float64 = (b - a) / float64(N)
+	var counter int
 
 	// Iterate over all subintervals
 	for i := 0; i < N; i++ {
@@ -79,6 +80,7 @@ func main() {
 		if f(ai)*f(bi) < 0 {
 			// Apply bisection method to find root
 			x, m := bisectionMethod(ai, bi, eps)
+			counter++
 
 			// Output results
 			fmt.Printf("Root found in interval [%.6f, %.6f]:\n", ai, bi)
@@ -89,4 +91,6 @@ func main() {
 			fmt.Printf("Residual: %.10f\n\n", math.Abs(f(x)))
 		}
 	}
+
+	fmt.Println("Number of roots found: ", counter)
 }

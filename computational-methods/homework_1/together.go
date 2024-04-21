@@ -7,12 +7,14 @@ import (
 
 func f(x float64) float64 {
 	// Define your function f(x) here
-	return math.Sin(x) + math.Pow(x, 3) - 9*x + 3
+	// return math.Sin(x) + math.Pow(x, 3) - 9*x + 3
+	return math.Pow(2, -x) - math.Sin(x)
 }
 
 func df(x float64) float64 {
 	// Define the derivative of f(x) here
-	return math.Cos(x) + 3*math.Pow(x, 2) - 9
+	// return math.Cos(x) + 3*math.Pow(x, 2) - 9
+	return -math.Pow(2, -x)*math.Log(2) - math.Cos(x)
 }
 
 func modifiedNewtonMethod(x0 float64, eps float64) (float64, int) {
@@ -190,6 +192,7 @@ func main() {
 
 	// Compute step size h
 	var h float64 = (b - a) / float64(N)
+	var counter int
 
 	// Iterate over all subintervals
 	for i := 0; i < N; i++ {
@@ -199,6 +202,7 @@ func main() {
 
 		// Check if the function has opposite signs at a and b
 		if f(ai)*f(bi) < 0 {
+			counter++
 			func() {
 				// Apply bisection method to find root
 				x, m := bisectionMethod(ai, bi, eps)
@@ -254,4 +258,6 @@ func main() {
 			}()
 		}
 	}
+	fmt.Println("Number of intervals found: ", counter)
+
 }

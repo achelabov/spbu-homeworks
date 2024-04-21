@@ -17,7 +17,7 @@ func df(x float64) float64 {
 
 func modifiedNewtonMethod(x0 float64, eps float64) (float64, int) {
 	// Initialize variables
-	var fx0, x float64 = f(x0), x0
+	var fx, x, p float64 = f(x0), x0, 0
 	var m int = 0
 
 	// Implement the Modified Newton's Method
@@ -29,11 +29,12 @@ func modifiedNewtonMethod(x0 float64, eps float64) (float64, int) {
 		}
 
 		// Compute new approximation using the Modified Newton's Method
-		x = x - fx0/df(x)
+		p = x
+		x = x - fx/df(x0)
 		m++
 
 		// Check if root is found
-		if math.Abs(x-x0) < eps {
+		if math.Abs(x-p) < eps {
 			return x, m
 		}
 
@@ -42,13 +43,7 @@ func modifiedNewtonMethod(x0 float64, eps float64) (float64, int) {
 			fmt.Println("Error: Maximum number of iterations reached")
 			return 0, 0
 		}
-
-		// Update x0 and fx0
-		x0 = x
-		fx0 = f(x0)
 	}
-
-	return x, m
 }
 
 func main() {
