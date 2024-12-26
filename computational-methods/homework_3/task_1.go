@@ -68,8 +68,7 @@ func lagrangeInterpolation(x []float64, y []float64, n int, xVal float64) float6
 
 // Функция для вычисления значения функции f(x)
 func f(x float64) float64 {
-	// Ваша функция f(x) здесь
-	return x*x - 2 // Пример: синус
+	return math.Log(1+x) - math.Exp(x)
 }
 
 // Функция для вычисления значения интерполяционного многочлена Pn(x)
