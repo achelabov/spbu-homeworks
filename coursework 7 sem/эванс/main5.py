@@ -142,6 +142,15 @@ def main():
 
     ani = animation.FuncAnimation(fig, update, frames=np.arange(0, 200, 1), init_func=init, blit=True)
     plt.show()
+ 
+    # Построение зависимостии Xb от Yb
+    plt.figure()
+    plt.plot(Xb_history, Yb_history, 'b-')
+    plt.xlabel('Xb')
+    plt.ylabel('Yb')
+    plt.title('Построение зависимостии Xb от Yb')
+    plt.grid(True)
+    plt.show()
 
 if __name__ == "__main__":
     main()
